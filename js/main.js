@@ -9,6 +9,10 @@ $(document).ready(function () {
         } else {
             $('header').removeClass('bg');
         }
+
+
+        $('.banner').height($(window).height());
+
     });
 
     if($(window).scrollTop() > $('.banner').height()) {
@@ -33,7 +37,7 @@ $(document).ready(function () {
             menu = target;
         $target = $(target);
         $('html, body').stop().animate({
-            'scrollTop': $target.offset().top+2
+            'scrollTop': $target.offset().top - $('header').height()
         }, 500, 'swing', function () {
             window.location.hash = target;
             $(document).on("scroll", onScroll);
