@@ -28,16 +28,20 @@ $(document).ready(function () {
         e.preventDefault();
         $(document).off("scroll");
 
+        if($('.navigation').hasClass('open')) {
+            $('.navigation').removeClass('open');
+            $('.hamburger-menu .bar').removeClass('animate');
+        }
+
         $('a').each(function () {
             $(this).removeClass('active');
         });
         $(this).addClass('active');
-
         var target = this.hash,
             menu = target;
         $target = $(target);
         $('html, body').stop().animate({
-            'scrollTop': $target.offset().top - $('header').height()
+            'scrollTop': $target.offset().top - 100
         }, 500, 'swing', function () {
             window.location.hash = target;
             $(document).on("scroll", onScroll);
@@ -72,6 +76,13 @@ function onScroll(event){
 }
 
 });
+
+(function () {
+    $('.hamburger-menu').on('click', function() {
+        $('.bar').toggleClass('animate');
+        $('.navigation').toggleClass('open');
+    })
+})();
 
 
 var TxtRotate = function(el, toRotate, period) {
